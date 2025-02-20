@@ -99,6 +99,7 @@ VALUES
     ('Nico', 'Steinwand', '1990-08-20', 'nico.steinwand@example.com', '0987654321', 'Beispielweg 2, 54321 Beispielstadt'),
     ('Fabrice', 'Boetcher', '1980-03-10', 'fabrice.boetcher@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt'),
     ('Dani', 'Wichert', '1980-03-10', 'fabrice.boetcher@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt');
+
 INSERT INTO Qualifikationen (Bezeichnung, Beschreibung)
 VALUES
     (1,'Schiffsfuehrer', 'Erlaubnis, ein Schiff zu steuern'),
@@ -121,9 +122,9 @@ VALUES
     
 INSERT INTO FahrtKategorien (Bezeichnung, SchiffsfuehrerMin, BootsleuteMin, TeamleiterMin, ServicePersonalMin)
 VALUES
-    ('Luxusfahrt', 1, 2, 1, 3),
-    ('Tagestour', 1, 1, 0, 2),
-    ('Sonderfahrt', 2, 3, 1, 5);
+    ('Linienfahrt', 1, 2, 1, 2),
+    ('Tagestour', 1, 2, 1, 3),
+    ('Charterfahrt', 1, 2, 1, 4);
     
 INSERT INTO Fahrten (SchiffID, Startdatum, Enddatum, Startort, Zielort, FahrtKategorieID)
 VALUES
