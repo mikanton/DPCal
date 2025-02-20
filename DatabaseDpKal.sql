@@ -95,16 +95,16 @@ CREATE TABLE Schiff_Bestand (
 
 INSERT INTO Mitarbeiter (Vorname, Nachname, Geburtsdatum, EMail, Telefonnummer, Adresse)
 VALUES
-    ('Max', 'Mustermann', '1985-05-15', 'max.mustermann@example.com', '1234567890', 'Musterstraße 1, 12345 Musterstadt'),
-    ('Anna', 'Schmidt', '1990-08-20', 'anna.schmidt@example.com', '0987654321', 'Beispielweg 2, 54321 Beispielstadt'),
-    ('Tom', 'Müller', '1980-03-10', 'tom.mueller@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt');
-
+    ('Hendrik', 'Proessel-Juergensen', '1985-05-15', 'max.mustermann@example.com', '1234567890', 'Musterstraße 1, 12345 Musterstadt'),
+    ('Nico', 'Steinwand', '1990-08-20', 'nico.steinwand@example.com', '0987654321', 'Beispielweg 2, 54321 Beispielstadt'),
+    ('Fabrice', 'Boetcher', '1980-03-10', 'fabrice.boetcher@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt'),
+    ('Dani', 'Wichert', '1980-03-10', 'fabrice.boetcher@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt');
 INSERT INTO Qualifikationen (Bezeichnung, Beschreibung)
 VALUES
-    ('Schiffsfuehrer', 'Erlaubnis, ein Schiff zu steuern'),
-    ('Bootsmann', 'Verantwortlich für die Wartung und Betreuung der Boote'),
-    ('Teamleiter', 'Koordination eines Teams'),
-    ('Servicepersonal', 'Betreuung von Gästen während der Fahrt');
+    (1,'Schiffsfuehrer', 'Erlaubnis, ein Schiff zu steuern'),
+    (2,'Bootsmann', 'Verantwortlich für die Wartung und Betreuung der Boote'),
+    (3,'Teamleiter', 'Koordination eines Teams'),
+    (4,'Servicepersonal', 'Betreuung von Gästen während der Fahrt');
 
 INSERT INTO Mitarbeiter_Qualifikationen (MitarbeiterID, QualifikationID, ErworbenAm)
 VALUES
@@ -115,9 +115,9 @@ VALUES
     
 INSERT INTO Schiffe (Name, Kapazitaet)
 VALUES
-    ('MS Seeperle', 100),
-    ('MS Nordlicht', 150),
-    ('MS Sonnenstrahl', 80);
+    ('MS Heiterkeit', 145),
+    ('MS Wappen von Spandau', 300),
+    ('MS Havelblick', 199);
     
 INSERT INTO FahrtKategorien (Bezeichnung, SchiffsfuehrerMin, BootsleuteMin, TeamleiterMin, ServicePersonalMin)
 VALUES
