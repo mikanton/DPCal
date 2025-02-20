@@ -1,3 +1,7 @@
+// This file contains placeholder data for the application
+// In a real-world scenario, this data would come from a database
+
+// Placeholder data for employees
 export const employees = [
   { id: 1, name: "John Doe" },
   { id: 2, name: "Jane Smith" },
@@ -5,6 +9,7 @@ export const employees = [
   { id: 4, name: "Emily Brown" },
 ]
 
+// Placeholder data for employee shifts
 export const shifts = [
   { employeeId: 1, day: "Monday", shift: "Morning" },
   { employeeId: 1, day: "Tuesday", shift: "Afternoon" },
@@ -16,6 +21,7 @@ export const shifts = [
   { employeeId: 4, day: "Friday", shift: "Morning" },
 ]
 
+// Placeholder data for ships
 export const ships = [
   { id: 1, name: "Seastar", status: "At Sea" },
   { id: 2, name: "Ocean Voyager", status: "Docked" },

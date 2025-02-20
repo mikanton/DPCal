@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { motion } from "framer-motion"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 
@@ -18,12 +19,14 @@ interface Shift {
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
+// This component displays a table of employee shift schedules
 export function ShiftSchedule() {
   const [employees, setEmployees] = useState<Employee[]>([])
   const [shifts, setShifts] = useState<Shift[]>([])
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    // Fetch employees and shifts from your API
     fetch("/api/employees")
       .then((res) => res.json())
       .then((data) => {
@@ -62,7 +65,12 @@ export function ShiftSchedule() {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="overflow-x-auto"
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -73,18 +81,23 @@ export function ShiftSchedule() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {employees.map((employee) => (
-            <TableRow key={employee.id}>
+          {employees.map((employee, index) => (
+            <motion.tr
+              key={employee.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
               <TableCell className="font-medium">{employee.name}</TableCell>
               {DAYS.map((day) => {
                 const shift = shifts.find((s) => s.employeeId === employee.id && s.day === day)
                 return <TableCell key={day}>{shift ? shift.shift : "-"}</TableCell>
               })}
-            </TableRow>
+            </motion.tr>
           ))}
         </TableBody>
       </Table>
-    </div>
+    </motion.div>
   )
 }
 

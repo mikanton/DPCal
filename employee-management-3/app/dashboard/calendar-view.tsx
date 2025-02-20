@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { motion } from "framer-motion"
 
 interface Event {
   id: string
@@ -62,7 +63,12 @@ export function CalendarView() {
   }
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white p-4 rounded-lg shadow"
+    >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">
           {currentDate.toLocaleString("default", { month: "long", year: "numeric" })}
@@ -86,9 +92,11 @@ export function CalendarView() {
           const dayEvents = getEventsForDay(day)
           const isCurrentMonth = day.getMonth() === currentDate.getMonth()
           return (
-            <div
+            <motion.div
               key={index}
-              className={`aspect-square p-1 border rounded ${
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`aspect-square p-1 border rounded cursor-pointer ${
                 isCurrentMonth ? "bg-white" : "bg-gray-100"
               } ${day.toDateString() === new Date().toDateString() ? "border-blue-500" : ""}`}
               onClick={() => {
@@ -104,7 +112,7 @@ export function CalendarView() {
                   </div>
                 </div>
               )}
-            </div>
+            </motion.div>
           )
         })}
       </div>
@@ -123,18 +131,24 @@ export function CalendarView() {
           <div className="mt-4">
             {selectedDay &&
               getEventsForDay(selectedDay).map((event) => (
-                <div key={event.id} className="mb-2 p-2 bg-gray-100 rounded">
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-2 p-2 bg-gray-100 rounded"
+                >
                   <h3 className="font-semibold">{event.summary}</h3>
                   <p className="text-sm text-gray-600">
                     {new Date(event.start.dateTime).toLocaleTimeString()} -{" "}
                     {new Date(event.end.dateTime).toLocaleTimeString()}
                   </p>
-                </div>
+                </motion.div>
               ))}
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </motion.div>
   )
 }
 
