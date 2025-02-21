@@ -8,6 +8,23 @@ CREATE TABLE Mitarbeiter (
     Adresse VARCHAR(255)
 );
 
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Role ENUM('Admin', 'Manager', 'Employee') NOT NULL,
+    LastLogin DATETIME,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insert a default admin user (password should be hashed in a real scenario)
+INSERT INTO Users (Username, PasswordHash, Email, Role)
+VALUES ('admin', 'hashed_password_here', 'admin@example.com', 'Admin');
+
+
+
 CREATE TABLE Qualifikationen (
     QualifikationID INT AUTO_INCREMENT PRIMARY KEY,
     Bezeichnung VARCHAR(100) NOT NULL,
@@ -99,7 +116,9 @@ VALUES
     ('Nico', 'Steinwand', '1990-08-20', 'nico.steinwand@example.com', '0987654321', 'Beispielweg 2, 54321 Beispielstadt'),
     ('Fabrice', 'Boetcher', '1980-03-10', 'fabrice.boetcher@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt'),
     ('Dani', 'Wichert', '1980-03-10', 'fabrice.boetcher@example.com', '1122334455', 'Hauptstraße 3, 98765 Haupstadt');
-
+	('Mika', 'Bsdurrek', '2006-08-14', 'mikanton@gmx.de', '017676685646', 'Haeselerstrasse 9, 14050 Berlin');
+ 
+ 
 INSERT INTO Qualifikationen (Bezeichnung, Beschreibung)
 VALUES
     (1,'Schiffsfuehrer', 'Erlaubnis, ein Schiff zu steuern'),
@@ -132,15 +151,4 @@ VALUES
     (2, '2024-02-01', '2024-02-03', 'Rostock', 'Lübeck', 2),
     (3, '2024-03-10', '2024-03-12', 'Bremen', 'Helgoland', 3);
     
-INSERT INTO Mitarbeiter_Verfügbarkeit (MitarbeiterID, Datum, Startzeit, Endzeit, Verfuegbar)
-VALUES
-    (1, '2024-01-15', '08:00:00', '18:00:00', TRUE),
-    (2, '2024-01-15', '10:00:00', '16:00:00', TRUE),
-    (3, '2024-01-15', '09:00:00', '17:00:00', FALSE);
-    
-INSERT INTO Mitarbeiter_Generelle_Unverfügbarkeit (MitarbeiterID, Wochentag, Startzeit, Endzeit)
-VALUES
-    (1, 'Montag', '08:00:00', '12:00:00'),
-    (2, 'Dienstag', '13:00:00', '17:00:00'),
-    (3, 'Freitag', '09:00:00', '18:00:00');
     
